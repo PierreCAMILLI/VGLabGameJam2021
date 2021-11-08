@@ -10,6 +10,10 @@ public class HideAndSeek : MonoBehaviour
     public ArcadeGame ArcadeGame { get { return _arcadeGame; } }
 
     [SerializeField]
+    private RectTransform _radarUI;
+    public RectTransform RadarUI { get { return _radarUI; } }
+
+    [SerializeField]
     private HeroController _heroController;
     public HeroController HeroController { get { return _heroController; } }
 
@@ -75,11 +79,14 @@ public class HideAndSeek : MonoBehaviour
 
             Game.BGMSource.clip = Game.SearchingMusic;
             Game.BGMSource.Play();
+
+            Game.RadarUI.gameObject.SetActive(true);
         }
 
         protected override void OnStateExit()
         {
             Game.HeroController.ToggleControls(false);
+            Game.RadarUI.gameObject.SetActive(false);
         }
     }
 

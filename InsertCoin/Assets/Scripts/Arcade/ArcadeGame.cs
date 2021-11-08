@@ -16,6 +16,10 @@ public class ArcadeGame : MonoBehaviour
     private ArcadeData _arcadeData;
     public ArcadeData Data { get { return _arcadeData; } }
 
+    [SerializeField]
+    private int _continueDuration = 15;
+    public int ContinueDuration { get { return _continueDuration; } }
+
     public enum State
     {
         MainGame,
@@ -109,7 +113,7 @@ public class ArcadeGame : MonoBehaviour
 
         protected override void OnStateEnter()
         {
-            ArcadeGame.Data.ContinueTimer = 15f;
+            ArcadeGame.Data.ContinueTimer = ArcadeGame.ContinueDuration;
             ArcadeGame.Actors.AlienGenerator.DestroyAllAliens();
             ArcadeGame.Actors.AlienGenerator.gameObject.SetActive(false);
         }
